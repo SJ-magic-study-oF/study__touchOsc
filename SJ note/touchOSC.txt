@@ -1,0 +1,96 @@
+/************************************************************
+まず、これを読んでからStepsを読むとよくわかる.
+************************************************************/
+■参考URL
+	TouchOSCをクラブで使う場合
+		http://www.akiraishihara.com/diary101012/
+		
+/************************************************************
+Steps
+************************************************************/
+■install
+touch osc : iphone : v1.9.9 : ¥600
+TouchOSC Editor : mac : v1.8.4 : free
+
+■OSC receiver : oFで作成
+
+■touch OSC editorでGUI作成
+
+■iPhoneとMacbookProを無線LANから切り離し、MacbookProとiPhoneをAdhoc接続(直接繋ぐ)にしてみましょう。
+
+・まずメニューバー右上の扇子みたいなヤツをタップして、「ネットワークを作成」を選ぶ。
+	ネットワーク名とチャンネル(自動で11が入ってる)を確認して「作成」
+	passwordは設定できないようだ.
+		OSX 10.10 Yosemite （ヨセミテ）ではパスワード付きのアドホックネットワークが作成できない、と話題に － Keynoteユーザに影響あり？
+			http://tips4somebody.blogspot.jp/2014/10/osx-1010-yosemite-keynote.html
+			
+		もし、会場にwifi環境があるなら、macとiphoneを同じwifiに接続することで、動作が可能となる.
+		こちらの方がいいかも.
+	
+・iphone側でwifiを見ると、「デバイス」としてmacが見えているので、これに接続.
+
+
+■次はTouchOSC Editorで作ったレイアウトをiPhoneに送ります。
+TouchOSC Editorで作成したレイアウトを保存し、ウィンドウの右上のSyncをタップする.
+
+iphone : touch OSC
+Layout
+	Add
+		Edit
+			+ button
+				input hostname : 	xxx.local
+									macの環境設定/共有(img_0.png) から、編集で設定したname
+									「ダイナミック グローバル ホスト名」はno check.
+									img_0.png に示す通り、各種check boxは全てoffでok.
+				
+		EDITOR HOSTSの蘭から、上記でinputしたhostnameをtap
+		
+		
+	上記で自分が作成したLayoutが入ってきているので、選択.
+
+■touch osc editorは落としてok
+
+■iphone : touch osc
+osc
+	host : xxx.local
+	Port(outgoing) : 12345 (oF)
+
+other : no touch
+
+■done
+guiへ
+
+■iphone -> mac : 最初のmessageでFirewallに引っかかるので、これを許可.
+	or : Firewallを予めoffにしておく.
+
+
+■終了後
+・macのFirewall on
+・iphone : wifi off.
+
+
+
+/************************************************************
+************************************************************/
+■other URLs
+	TouchOSCの初期設定方法
+		http://meteor.blog.avis.jp/archives/220
+
+■FAQ
+・Wifi環境は必要か?
+	No.
+	mac - iphone のアドホック接続でOK(Wifi環境なしでOK).
+	
+	ただし、passwordが設定できない.
+		OSX 10.10 Yosemite （ヨセミテ）ではパスワード付きのアドホックネットワークが作成できない、と話題に － Keynoteユーザに影響あり？
+			http://tips4somebody.blogspot.jp/2014/10/osx-1010-yosemite-keynote.html
+			
+			
+	もし、会場にwifi環境があるなら、macとiphoneを同じwifiに接続することで、動作が可能となる.
+	
+	
+・iphone : touch oscでLayout/Add の蘭にて、"EDITOR HOSTS"が削除しても復帰してしまう.
+	iphoneのホームボタン : double click から、裏で動作しているosc touch をスワイプして終了させると、きちんとクリアされる.
+
+
+
